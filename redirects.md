@@ -35,6 +35,7 @@ If your route has parameters, you may pass them as the second argument to the `r
 
     return redirect()->route('profile', ['id' => 1]);
 
+<a name="populating-parameters-via-eloquent-models"></a>
 #### Populating Parameters Via Eloquent Models
 
 If you are redirecting to a route with an "ID" parameter that is being populated from an Eloquent model, you may pass the model itself. The ID will be extracted automatically:
@@ -80,6 +81,10 @@ Redirecting to a new URL and [flashing data to the session](/docs/{{version}}/se
 
         return redirect('dashboard')->with('status', 'Profile updated!');
     });
+
+You may use the `withInput` method provided by the `RedirectResponse` instance to flash the current request's input data to the session before redirecting the user to a new location. Once the input has been flashed to the session, you may easily [retrieve it](/docs/{{version}}/requests#retrieving-old-input) during the next request:
+
+    return back()->withInput();
 
 After the user is redirected, you may display the flashed message from the [session](/docs/{{version}}/session). For example, using [Blade syntax](/docs/{{version}}/blade):
 
